@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101323">
+  <meta name="description" content="العب عشر ألعاب ممتعة باللغة العربية مجاناً.">
+  <title>ألعاب عربية — العب واستمتع</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Changa:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="#home"><span class="brand-icon">🎮</span> ألعاب<span class="brand-accent">نا</span></a><a class="top-link" href="#games">اكتشف الألعاب <span>↓</span></a></header>
+  <main id="home">
+    <section class="hero">
+      <div class="hero-glow"></div>
+      <div class="hero-copy"><span class="eyebrow"><i></i> مساحة اللعب العربية</span><h1>اللعب أحلى<br>لما يكون <span>بالعربي.</span></h1><p>عشر ألعاب خفيفة وممتعة، اختيرت لتناسب كل الأذواق. اختر لعبتك وابدأ التحدي!</p><a class="primary-button" href="#games">يلا نلعب <span>←</span></a><div class="hero-note"><span>10</span> ألعاب مجانية <b>·</b> بدون تسجيل</div></div>
+      <div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="gamepad">🎮</div><span class="float-emoji emoji-a">✨</span><span class="float-emoji emoji-b">🕹️</span><span class="float-emoji emoji-c">⭐</span><div class="art-label">وقت المرح!</div></div>
+    </section>
+    <section class="games-section" id="games"><div class="section-heading"><div><span class="eyebrow">اختر تحدّيك</span><h2>كل الألعاب <span>في مكان واحد</span></h2></div><div class="count-badge"><span>10</span> ألعاب</div></div>
+      <div class="games-grid">{% for game in games %}<article class="game-card" style="--i: {{ loop.index0 }}"><div class="card-top"><span class="game-icon">{{ game.icon }}</span><span class="game-number">{{ '%02d' % loop.index }}</span></div><h3>{{ game.title }}</h3><p>{{ game.description }}</p><button class="play-button" data-game="{{ game.id }}">العب الآن <span>←</span></button></article>{% endfor %}</div>
+    </section>
+    <section class="play-area" id="play-area" hidden><div class="play-panel"><button class="close-button" id="close-game" aria-label="إغلاق">×</button><div class="play-icon" id="play-icon"></div><h2 id="play-title"></h2><p class="game-message" id="game-message"></p><div class="game-display" id="game-display"></div><div id="game-controls"></div><button class="restart-button" id="restart-game" hidden>العب مرة أخرى ↻</button></div></section>
+  </main>
+  <footer><span>🎮 ألعابنا</span><p>صُنعت بحب لعشاق اللعب باللغة العربية.</p><a href="https://github.com/boabslamsami-collab/Site-Game-arabe">المشروع على GitHub ↗</a></footer>
+  <script src="{{ url_for('static', filename='game.js') }}"></script>
+</body>
+</html>
